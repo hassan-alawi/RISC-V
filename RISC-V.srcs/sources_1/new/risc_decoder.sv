@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 07/05/2024 11:01:58 AM
+// Create Date: 07/05/2024 12:07:38 PM
 // Design Name: 
-// Module Name: ALU
+// Module Name: risc_decoder
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module register_file(
+module risc_decoder(
 
     );
 endmodule
