@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+Testcase passed:           4 /           4
+$finish called at time : 90 ns : File "C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_PC.sv" Line 122
