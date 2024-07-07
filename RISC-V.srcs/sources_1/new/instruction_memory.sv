@@ -20,7 +20,14 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_memory(
-
+module instruction_memory #(parameter DEPTH = 4069, WIDTH = 32,FILE="")(
+    input logic [WIDTH-1:0] instruction_address,
+    output logic [WIDTH-1:0] instruction     
     );
+    
+    logic [WIDTH-1:0] ROM [DEPTH-1:0];
+    initial $readmemh(FILE, ROM, 0, DEPTH-1);
+    
+    assign instruction = ROM[instruction_address];
+    
 endmodule
