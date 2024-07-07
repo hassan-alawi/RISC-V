@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+Testcase passed:          62 /          62
+$finish called at time : 1310 ns : File "C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_register_file.sv" Line 138
