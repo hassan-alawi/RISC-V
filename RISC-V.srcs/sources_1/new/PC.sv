@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module PC(
-    input logic clk, nrst, load_startup_address, PC_src,
+    input logic clk, nrst, en, load_startup_address, PC_src,
     input logic [31:0] startup_address, sign_extended_immediate,
     output logic [31:0] instruction_address
 );
@@ -42,8 +42,9 @@ always_comb begin: NEXT_INSTRUCTION_ADDRESS_LOGIC
     incr_instruction_address = instruction_address + 32'd4;
     PC_relative_address = instruction_address + sign_extended_immediate;
     
-    n_instruction_address  = load_startup_address  ? startup_address : PC_src ?  PC_relative_address : incr_instruction_address;
-
+    if(en) begin
+        n_instruction_address  = load_startup_address  ? startup_address : PC_src ?  PC_relative_address : incr_instruction_address;
+    end
 end
 
 endmodule

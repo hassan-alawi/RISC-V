@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 07/05/2024 02:01:43 PM
+// Create Date: 07/07/2024 02:38:36 PM
 // Design Name: 
-// Module Name: instruction_memory
+// Module Name: core
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,15 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_memory #(parameter DEPTH = 4069, WIDTH = 32,FILE="")(
-    input logic en,
-    input logic [WIDTH-1:0] instruction_address,
-    output logic [WIDTH-1:0] instruction     
+module core #(parameter FILE = "")(
+    input logic clk, nrst, load_startup_address, en,
+    input logic [31:0] startup_address,
+    output logic [31:0] memory_mapped_reg
     );
     
-    logic [WIDTH-1:0] ROM [DEPTH-1:0];
-    initial $readmemh(FILE, ROM, 0, DEPTH-1);
     
-    assign instruction = en ? ROM[instruction_address] : '0;
+    
     
 endmodule

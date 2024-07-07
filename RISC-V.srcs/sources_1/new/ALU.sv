@@ -21,6 +21,7 @@
 
 
 module ALU(
+    input logic en,
     input logic [31:0] rs1, rs2,
     input logic [3:0] ALU_control,
     output logic [31:0] result,
@@ -36,28 +37,30 @@ module ALU(
     assign zero = result == '0;
     
     always_comb begin: ALU_LUT
-    
-        case(ALU_control)
-        
-        4'b0010: begin
-            result = rs1 + rs2;
+        result = '1;
+        if(en) begin
+            case(ALU_control)
+            
+            4'b0010: begin
+                result = rs1 + rs2;
+            end
+            
+            4'b0110: begin
+                result = rs1 - rs2;
+            end
+            
+            4'b0000: begin
+                result = rs1 & rs2;
+            end
+            
+            4'b0001: begin
+                result = rs1 | rs2;
+            end
+            
+            default: result = '1;
+            
+            endcase
         end
-        
-        4'b0110: begin
-            result = rs1 - rs2;
-        end
-        
-        4'b0000: begin
-            result = rs1 & rs2;
-        end
-        
-        4'b0001: begin
-            result = rs1 | rs2;
-        end
-        
-        default: result = '1;
-        
-        endcase
         
     end
     

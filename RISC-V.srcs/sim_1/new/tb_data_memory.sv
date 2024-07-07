@@ -127,7 +127,7 @@ for(int i = 0; i < DEPTH; i++) begin
     @(negedge tb_clk);
 end
 
-for(int j = 0; j < DEPTH-1; j++) begin
+for(int j = 0; j < DEPTH; j++) begin
     mem_read(j, j, j);
     @(negedge tb_clk);
 end

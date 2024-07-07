@@ -19,7 +19,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 module data_memory #(DEPTH = 4096, WIDTH = 8)(
-    input logic clk, nrst, mem_read, mem_write,
+    input logic clk, nrst, en, mem_read, mem_write,
     input logic [31:0] address, write_data,
     output logic [31:0] mem_read_data
 );
@@ -38,10 +38,10 @@ module data_memory #(DEPTH = 4096, WIDTH = 8)(
     end
     
     always_comb begin: NEXT_MEMORY_LOGIC
-        mem_read_data = mem_read ? RAM[address] : '0;
+        mem_read_data = mem_read & en ? RAM[address] : '0;
         n_RAM = RAM;
         
-        if(mem_write) begin n_RAM[address] = write_data; end
+        if(mem_write & en) begin n_RAM[address] = write_data; end
     end
     
     

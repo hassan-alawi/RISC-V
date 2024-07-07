@@ -1,0 +1,3 @@
+Time resolution is 1 ps
+Testcase passed:        4096 /        4096
+$finish called at time : 204850 ns : File "C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_data_memory.sv" Line 137
