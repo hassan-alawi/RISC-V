@@ -3,9 +3,9 @@
 // Company: 
 // Engineer: 
 // 
-// Create Date: 07/05/2024 12:07:38 PM
+// Create Date: 07/06/2024 08:22:48 PM
 // Design Name: 
-// Module Name: risc_decoder
+// Module Name: imeddiate_generator
 // Project Name: 
 // Target Devices: 
 // Tool Versions: 
@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module risc_decoder(
+module imeddiate_generator(
 
     );
 endmodule
