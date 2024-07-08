@@ -4,7 +4,7 @@ May 22 2024
 19:03:11
 C:/Users/hassa/RISC-V/RISC-V.sim/sim_1/behav/xsim/glbl.v,1708598507,verilog,,,,glbl,,uvm,,,,,,
 C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_PC.sv,1720314116,systemVerilog,,C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv,,tb_PC,,uvm,,,,,,
-C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv,1720406785,systemVerilog,,,,tb_core,,uvm,,,,,,
+C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv,1720409644,systemVerilog,,,,tb_core,,uvm,,,,,,
 C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_data_memory.sv,1720377626,systemVerilog,,C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_register_file.sv,,tb_data_memory,,uvm,,,,,,
 C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_instruction_memory.sv,1720363866,systemVerilog,,C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_PC.sv,,tb_instruction_memory,,uvm,,,,,,
 C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_register_file.sv,1720370156,systemVerilog,,C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_instruction_memory.sv,,tb_register_file,,uvm,,,,,,

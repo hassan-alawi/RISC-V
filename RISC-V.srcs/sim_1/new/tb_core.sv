@@ -268,6 +268,22 @@ generate_UJ_type(JAL_OPCODE, 5'd1, 21'hFFFFF8); //jal x1, -8
 
 generate_NULL();
 
+toggle_en();
+
+//Test Case: ADDI -> ADDI -> ADDI -> AND -> OR -> BEQ
+reset();
+
+repeat(2) @(posedge tb_clk);
+toggle_en();
+
+generate_I_type(I_TYPE_OPCODE,5'd0,5'd1,ADD_FUNCT3,12'hFFF); //addi x1, x0, -1
+generate_I_type(I_TYPE_OPCODE,5'd0,5'd2,ADD_FUNCT3,12'h555); //addi x2, x0, 0x555
+generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd3, AND_FUNCT3, AND_FUNCT7); //and x3, x2, x1
+generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd4, OR_FUNCT3, OR_FUNCT7); //or x4, x2, x1
+generate_SB_type(BEQ_OPCODE,5'd4,5'd1, BEQ_FUNCT3, 13'hFFF0); //beq x4, x1, -16
+
+generate_NULL();
+
 
 
 $display("Testcase passed: %d / %d", testcases_passed, total_testcases);
