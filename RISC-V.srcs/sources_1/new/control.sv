@@ -97,10 +97,10 @@ always_comb begin: CONTOL_LUT
             branch = 0;
             jump = 1;
             mem_to_reg = 0;
-            reg_write = 0;
+            reg_write = 1;
             mem_write = 0;
             mem_read = 0;
-            ALU_src = 0;
+            ALU_src = 1;
             ALU_op = 2'b01;
         end
         

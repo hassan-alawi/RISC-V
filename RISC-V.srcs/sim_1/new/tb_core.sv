@@ -83,6 +83,7 @@ core #(
 .clk(tb_clk),
 .nrst(tb_nrst),
 .en(tb_en),
+.load_startup_address(tb_load_startup_address),
 .startup_address(tb_startup_address),
 .instruction(tb_instruction),
 .memory_mapped_reg(tb_memory_mapped_reg)
@@ -254,8 +255,18 @@ generate_S_type(SW_OPCODE,5'd0,5'd5, SW_FUNCT3,12'h001); //sw x5 1(x0)
 
 generate_NULL();
 check_outputs(32'd8, 1);
+toggle_en();
 
 //Test Case: Jal 
+reset();
+
+repeat(2) @(posedge tb_clk);
+toggle_en();
+
+generate_UJ_type(JAL_OPCODE, 5'd1, 21'h000008); //jal x1, 8
+generate_UJ_type(JAL_OPCODE, 5'd1, 21'hFFFFF8); //jal x1, -8
+
+generate_NULL();
 
 
 

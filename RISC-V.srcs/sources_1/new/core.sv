@@ -38,7 +38,7 @@ REG_FILE_DEPTH = 32)
     
     //PC Signals
     logic PC_src;
-    logic [31:0] instruction_address;
+    logic [31:0] instruction_address, incr_instruction_address;
     
     assign PC_src = jump | (branch & zero);
     
@@ -63,7 +63,7 @@ REG_FILE_DEPTH = 32)
     assign read_register_2 = instruction[24:20];
     assign write_register = instruction[11:7];
     
-    assign reg_write_data = mem_to_reg ? mem_read_data : result;
+    assign reg_write_data = jump ? incr_instruction_address : mem_to_reg ? mem_read_data : result;
     
     //ALU Control Signals
     logic [6:0] funct7;
@@ -94,7 +94,8 @@ REG_FILE_DEPTH = 32)
     .PC_src(PC_src),
     .startup_address(startup_address),
     .sign_extended_immediate(sign_extended_immediate),
-    .instruction_address(instruction_address)
+    .instruction_address(instruction_address),
+    .incr_instruction_address(incr_instruction_address)
     );
     
     

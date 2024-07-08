@@ -5,7 +5,6 @@ Running: D:/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
-WARNING: [VRFC 10-5021] port 'load_startup_address' is not connected on this instance [C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv:73]
 Completed static elaboration
 Starting simulation data flow analysis
 Completed simulation data flow analysis

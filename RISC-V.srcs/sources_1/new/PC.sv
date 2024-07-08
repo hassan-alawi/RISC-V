@@ -21,10 +21,10 @@
 module PC(
     input logic clk, nrst, en, load_startup_address, PC_src,
     input logic [31:0] startup_address, sign_extended_immediate,
-    output logic [31:0] instruction_address
+    output logic [31:0] instruction_address, incr_instruction_address
 );
 
-logic [31:0] n_instruction_address, incr_instruction_address, PC_relative_address;
+logic [31:0] n_instruction_address, PC_relative_address;
 
 always_ff @(posedge clk, negedge nrst) begin
     if(~nrst) begin
