@@ -30,41 +30,41 @@ module immediate_generator(
     assign opcode = instruction[6:0];
     
     always_comb begin: IMMEDIATE_LUT
-        sign_extended_immediate = '0;
+        sign_extended_immediate = 32'd0;
         
         if(en) begin
             case(opcode)
             
             7'b0110011: begin //R-Type Instructions
-                sign_extended_immediate = '0;
+                sign_extended_immediate = 32'd0;
             end
             
             7'b0010011: begin //I-Type instruction
-                sign_extended_immediate = instruction[31] ? {'1,instruction[30:20]} : {'0,instruction[30:20]};
+                sign_extended_immediate = instruction[31] ? {21'hFFFFFF,instruction[30:20]} : {21'h000000,instruction[30:20]};
             end
             
             7'b0000011: begin //lw instruction
-                sign_extended_immediate = instruction[31] ? {'1,instruction[30:20]} : {'0,instruction[30:20]};
+                sign_extended_immediate = instruction[31] ? {21'hFFFFFF,instruction[30:20]} : {21'h000000,instruction[30:20]};
             end
             
             7'b0100011: begin //sw instruction
-                sign_extended_immediate = instruction[31] ? {'1,instruction[30:25], instruction[11:7]} : {'0,instruction[30:25], instruction[11:7]};
+                sign_extended_immediate = instruction[31] ? {21'hFFFFFF,instruction[30:25], instruction[11:7]} : {21'h000000,instruction[30:25], instruction[11:7]};
             end
             
             7'b1100011: begin //beq and SB-Type instruction 
-                sign_extended_immediate = instruction[31] ? {'1, instruction[7], instruction[30:25], instruction[11:8], 1'b0} : {'0, instruction[7], instruction[30:25], instruction[11:8], 1'b0};
+                sign_extended_immediate = instruction[31] ? {20'hFFFFF, instruction[7], instruction[30:25], instruction[11:8], 1'b0} : {20'h00000, instruction[7], instruction[30:25], instruction[11:8], 1'b0};
             end
             
             7'b1101111: begin //jal and UJ-Type instruction
-                sign_extended_immediate = instruction[31] ? {'1, instruction[19:12], instruction[20], instruction[30:21], 1'b0} : {'0, instruction[19:12], instruction[20], instruction[30:21], 1'b0};
+                sign_extended_immediate = instruction[31] ? {12'hFFF, instruction[19:12], instruction[20], instruction[30:21], 1'b0} : {12'h000, instruction[19:12], instruction[20], instruction[30:21], 1'b0};
             end
             
             7'b0101111: begin //lui and U-Type instruction
-                sign_extended_immediate = {instruction[31:12], '0};
+                sign_extended_immediate = {instruction[31:12], 12'b0};
             end
             
             default: begin 
-                sign_extended_immediate = '0;
+                sign_extended_immediate = 32'd0;
             end
             
             endcase

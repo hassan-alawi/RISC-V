@@ -1,0 +1,22 @@
+# compile verilog/system verilog design source files
+sv xil_defaultlib  \
+"../../../../RISC-V.srcs/sources_1/new/ALU.sv" \
+"../../../../RISC-V.srcs/sources_1/new/ALU_control.sv" \
+"../../../../RISC-V.srcs/sources_1/new/PC.sv" \
+"../../../../RISC-V.srcs/sources_1/new/control.sv" \
+"../../../../RISC-V.srcs/sources_1/new/data_memory.sv" \
+"../../../../RISC-V.srcs/sources_1/new/immediate_generator.sv" \
+"../../../../RISC-V.srcs/sources_1/new/instruction_memory.sv" \
+"../../../../RISC-V.srcs/sources_1/new/register_file.sv" \
+"../../../../RISC-V.srcs/sources_1/new/core.sv" \
+"../../../../RISC-V.srcs/sim_1/new/tb_data_memory.sv" \
+"../../../../RISC-V.srcs/sim_1/new/tb_register_file.sv" \
+"../../../../RISC-V.srcs/sim_1/new/tb_instruction_memory.sv" \
+"../../../../RISC-V.srcs/sim_1/new/tb_PC.sv" \
+"../../../../RISC-V.srcs/sim_1/new/tb_core.sv" \
+
+# compile glbl module
+verilog xil_defaultlib "glbl.v"
+
+# Do not sort compile order
+nosort

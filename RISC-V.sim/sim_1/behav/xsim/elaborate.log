@@ -1,17 +1,23 @@
 Vivado Simulator v2024.1
 Copyright 1986-2022 Xilinx, Inc. All Rights Reserved.
 Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
-Running: D:/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_data_memory_behav xil_defaultlib.tb_data_memory xil_defaultlib.glbl -log elaborate.log 
+Running: D:/Vivado/2024.1/bin/unwrapped/win64.o/xelab.exe --incr --debug typical --relax --mt 2 -L xil_defaultlib -L uvm -L unisims_ver -L unimacro_ver -L secureip --snapshot tb_core_behav xil_defaultlib.tb_core xil_defaultlib.glbl -log elaborate.log 
 Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
+WARNING: [VRFC 10-5021] port 'load_startup_address' is not connected on this instance [C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv:73]
 Completed static elaboration
 Starting simulation data flow analysis
-WARNING: [XSIM 43-4099] "C:/Users/hassa/RISC-V/RISC-V.srcs/sources_1/new/data_memory.sv" Line 21. Module data_memory(WIDTH=32) doesn't have a timescale but at least one module in design has a timescale.
-WARNING: [XSIM 43-4099] "C:/Users/hassa/RISC-V/RISC-V.srcs/sources_1/new/data_memory.sv" Line 21. Module data_memory(WIDTH=32) doesn't have a timescale but at least one module in design has a timescale.
 Completed simulation data flow analysis
 Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.data_memory(WIDTH=32)
-Compiling module xil_defaultlib.tb_data_memory
+Compiling module xil_defaultlib.PC
+Compiling module xil_defaultlib.control
+Compiling module xil_defaultlib.register_file
+Compiling module xil_defaultlib.immediate_generator
+Compiling module xil_defaultlib.ALU_control
+Compiling module xil_defaultlib.ALU
+Compiling module xil_defaultlib.data_memory(WIDTH=32,MEM_MAP_ADR...
+Compiling module xil_defaultlib.core(DATA_MEM_MAP_ADR=1)
+Compiling module xil_defaultlib.tb_core
 Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_data_memory_behav
+Built simulation snapshot tb_core_behav

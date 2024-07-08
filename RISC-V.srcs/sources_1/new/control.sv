@@ -27,6 +27,7 @@ module control(
 
 always_comb begin: CONTOL_LUT
     branch = 0;
+    jump = 0;
     mem_to_reg = 0;
     reg_write = 0;
     mem_write = 0;
@@ -46,6 +47,17 @@ always_comb begin: CONTOL_LUT
             mem_read = 0;
             ALU_src = 0;
             ALU_op = 2'b10;
+        end
+        
+        7'b0010011: begin //I-Type instruction
+            branch = 0;
+            jump = 0;
+            mem_to_reg = 0;
+            reg_write = 1;
+            mem_write = 0;
+            mem_read = 0;
+            ALU_src = 1;
+            ALU_op = 2'b11;
         end
         
         7'b0000011: begin //lw instruction

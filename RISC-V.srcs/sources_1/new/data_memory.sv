@@ -18,14 +18,16 @@
 // 
 //////////////////////////////////////////////////////////////////////////////////
 
-module data_memory #(DEPTH = 4096, WIDTH = 8)(
+module data_memory #(DEPTH = 4096, WIDTH = 8, MEM_MAP_ADR = 0)(
     input logic clk, nrst, en, mem_read, mem_write,
     input logic [31:0] address, write_data,
-    output logic [31:0] mem_read_data
+    output logic [31:0] mem_read_data, mem_mapped_reg
 );
 
     logic [WIDTH-1:0] RAM [DEPTH-1:0];
     logic [WIDTH-1:0] n_RAM [DEPTH-1:0];
+    
+    assign mem_mapped_reg = RAM[MEM_MAP_ADR];
     
      always_ff @(posedge clk, negedge nrst) begin
         if(~nrst) begin
