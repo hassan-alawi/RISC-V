@@ -6,19 +6,4 @@ Using 2 slave threads.
 Starting static elaboration
 Pass Through NonSizing Optimizer
 Completed static elaboration
-Starting simulation data flow analysis
-Completed simulation data flow analysis
-Time Resolution for simulation is 1ps
-Compiling module xil_defaultlib.PC
-Compiling module xil_defaultlib.instruction_memory(WIDTH=8,FILE=...
-Compiling module xil_defaultlib.control
-Compiling module xil_defaultlib.register_file
-Compiling module xil_defaultlib.immediate_generator
-Compiling module xil_defaultlib.ALU_control
-Compiling module xil_defaultlib.ALU
-Compiling module xil_defaultlib.data_memory(WIDTH=32,MEM_MAP_ADR...
-Compiling module xil_defaultlib.core(DATA_MEM_MAP_ADR=1)
-Compiling module xil_defaultlib.tb_core
-WARNING: [XSIM 43-3373] "C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv" Line 229. System function $fgets is used as system task. This system function should have a LHS e.g. x=$fgets().
-Compiling module xil_defaultlib.glbl
-Built simulation snapshot tb_core_behav
+INFO: [XSIM 43-4323] No Change in HDL. Linking previously generated obj files to create kernel
