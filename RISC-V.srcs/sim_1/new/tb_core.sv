@@ -24,9 +24,9 @@ module tb_core();
 
 
 //Core Configuration Parameters
-localparam INSTR_MEM_FILE = "C:/users/hassa/RISC-V/RISC-V.srcs/sources_1/new/instruction.mem"; 
-localparam INSTR_MEM_WIDTH = 32;
-localparam INSTR_MEM_DEPTH = 4096;
+localparam INSTR_MEM_FILE = "C:/users/hassa/RISC-V/instruction_8.hex"; 
+localparam INSTR_MEM_WIDTH = 8;
+localparam INSTR_MEM_DEPTH = 16384;
 localparam DATA_MEM_MAP_ADR = 1;
 localparam DATA_MEM_WIDTH = 32;
 localparam DATA_MEM_DEPTH = 4096;
@@ -35,6 +35,7 @@ localparam REG_FILE_DEPTH = 32;
 
 //Test-bench Parameters
 localparam CLK_PERIOD = 10;
+localparam INSTR_COUNT_PATH = "C:/users/hassa/RISC-V/line_count.txt"; 
 
 //OPCODES
 localparam R_TYPE_OPCODE = 7'b0110011;
@@ -67,7 +68,8 @@ logic [31:0] tb_instruction, tb_startup_address;
 logic [31:0] tb_memory_mapped_reg;
 
 //TB Variables
-integer testcases_passed, total_testcases;
+integer testcases_passed, total_testcases, done_writing, num_instructions;
+int fd;
 
 
 core #(
@@ -85,7 +87,7 @@ core #(
 .en(tb_en),
 .load_startup_address(tb_load_startup_address),
 .startup_address(tb_startup_address),
-.instruction(tb_instruction),
+//.instruction(tb_instruction),
 .memory_mapped_reg(tb_memory_mapped_reg)
 );
 
@@ -219,74 +221,102 @@ tb_clk = 1;
 end
 
 initial begin
+    fd = $fopen(INSTR_COUNT_PATH, "r");
+    num_instructions = 0;
+    done_writing = 0;
+    if(fd) begin
+        $display("Opened %s file succesfully", INSTR_COUNT_PATH);
+        $fgets(num_instructions, fd);
+        $fclose(fd);
+        done_writing = 1;
+    end
+    
+    else begin
+        $display("Failed to open %s file", INSTR_COUNT_PATH);
+        $fclose(fd);
+        done_writing = 1;
+    end
+    
+    
+    
+end
+
+initial begin
 testcases_passed = 0;
 total_testcases = 0;
+while(done_writing == 0);
+num_instructions -= 48;
 
 init_tb();
 reset();
 
-repeat(2) @(posedge tb_clk);
-@(negedge tb_clk);
-toggle_en();
 @(posedge tb_clk);
-
-//Test Case: ADDI -> ADDI -> ADD -> SW
-generate_I_type(I_TYPE_OPCODE,5'd0,5'd1,ADD_FUNCT3,12'h010); //addi x1, x0, 16
-generate_I_type(I_TYPE_OPCODE,5'd0,5'd2,ADD_FUNCT3,12'h004); //addi x2, x0, 4
-generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd3, ADD_FUNCT3, ADD_FUNCT7); //add x3, x2, x1
-generate_S_type(SW_OPCODE,5'd0,5'd3, SW_FUNCT3,12'h001); //sw x3 1(x0)
-
-generate_NULL();
-check_outputs(32'd20,1);
-
-//Test Case: ADDI -> ORI -> SUB -> SW -> LW -> ANDI -> SW
-reset();
-
-repeat(2) @(posedge tb_clk);
-@(posedge tb_clk);
-
-generate_I_type(I_TYPE_OPCODE,5'd0,5'd1,ADD_FUNCT3,12'h010); //addi x1, x0, 16
-generate_I_type(I_TYPE_OPCODE,5'd1,5'd2,OR_FUNCT3,12'h008); //ori x2, x1, 008
-generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd3, SUB_FUNCT3, SUB_FUNCT7); //sub x3, x2, x1
-generate_S_type(SW_OPCODE,5'd0,5'd3, SW_FUNCT3,12'h000); //sw x3 0(x0)
-generate_I_type(LW_OPCODE,5'd0,5'd4,LW_FUNCT3,12'h000); //lw x4 0(x0)
-generate_I_type(I_TYPE_OPCODE,5'd4,5'd5,AND_FUNCT3,12'hFFF); //andi x5, x4, FFF
-generate_S_type(SW_OPCODE,5'd0,5'd5, SW_FUNCT3,12'h001); //sw x5 1(x0)
-
-generate_NULL();
-check_outputs(32'd8, 1);
+#(0.05 * CLK_PERIOD);
 toggle_en();
+repeat(num_instructions) @(posedge tb_clk);
+#(0.05 * CLK_PERIOD);
+//toggle_en();
+//@(negedge tb_clk);
+//toggle_en();
+//@(posedge tb_clk);
 
-//Test Case: Jal 
-reset();
+////Test Case: ADDI -> ADDI -> ADD -> SW
+//generate_I_type(I_TYPE_OPCODE,5'd0,5'd1,ADD_FUNCT3,12'h010); //addi x1, x0, 16
+//generate_I_type(I_TYPE_OPCODE,5'd0,5'd2,ADD_FUNCT3,12'h004); //addi x2, x0, 4
+//generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd3, ADD_FUNCT3, ADD_FUNCT7); //add x3, x2, x1
+//generate_S_type(SW_OPCODE,5'd0,5'd3, SW_FUNCT3,12'h001); //sw x3 1(x0)
 
-repeat(2) @(posedge tb_clk);
-toggle_en();
+//generate_NULL();
+//check_outputs(32'd20,1);
 
-generate_UJ_type(JAL_OPCODE, 5'd1, 21'h000008); //jal x1, 8
-generate_UJ_type(JAL_OPCODE, 5'd1, 21'hFFFFF8); //jal x1, -8
+////Test Case: ADDI -> ORI -> SUB -> SW -> LW -> ANDI -> SW
+//reset();
 
-generate_NULL();
+//repeat(2) @(posedge tb_clk);
+//@(posedge tb_clk);
 
-toggle_en();
+//generate_I_type(I_TYPE_OPCODE,5'd0,5'd1,ADD_FUNCT3,12'h010); //addi x1, x0, 16
+//generate_I_type(I_TYPE_OPCODE,5'd1,5'd2,OR_FUNCT3,12'h008); //ori x2, x1, 008
+//generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd3, SUB_FUNCT3, SUB_FUNCT7); //sub x3, x2, x1
+//generate_S_type(SW_OPCODE,5'd0,5'd3, SW_FUNCT3,12'h000); //sw x3 0(x0)
+//generate_I_type(LW_OPCODE,5'd0,5'd4,LW_FUNCT3,12'h000); //lw x4 0(x0)
+//generate_I_type(I_TYPE_OPCODE,5'd4,5'd5,AND_FUNCT3,12'hFFF); //andi x5, x4, FFF
+//generate_S_type(SW_OPCODE,5'd0,5'd5, SW_FUNCT3,12'h001); //sw x5 1(x0)
 
-//Test Case: ADDI -> ADDI -> ADDI -> AND -> OR -> BEQ
-reset();
+//generate_NULL();
+//check_outputs(32'd8, 1);
+//toggle_en();
 
-repeat(2) @(posedge tb_clk);
-toggle_en();
+////Test Case: Jal 
+//reset();
 
-generate_I_type(I_TYPE_OPCODE,5'd0,5'd1,ADD_FUNCT3,12'hFFF); //addi x1, x0, -1
-generate_I_type(I_TYPE_OPCODE,5'd0,5'd2,ADD_FUNCT3,12'h555); //addi x2, x0, 0x555
-generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd3, AND_FUNCT3, AND_FUNCT7); //and x3, x2, x1
-generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd4, OR_FUNCT3, OR_FUNCT7); //or x4, x2, x1
-generate_SB_type(BEQ_OPCODE,5'd4,5'd1, BEQ_FUNCT3, 13'hFFF0); //beq x4, x1, -16
+//repeat(2) @(posedge tb_clk);
+//toggle_en();
 
-generate_NULL();
+//generate_UJ_type(JAL_OPCODE, 5'd1, 21'h000008); //jal x1, 8
+//generate_UJ_type(JAL_OPCODE, 5'd1, 21'hFFFFF8); //jal x1, -8
+
+//generate_NULL();
+
+//toggle_en();
+
+////Test Case: ADDI -> ADDI -> ADDI -> AND -> OR -> BEQ
+//reset();
+
+//repeat(2) @(posedge tb_clk);
+//toggle_en();
+
+//generate_I_type(I_TYPE_OPCODE,5'd0,5'd1,ADD_FUNCT3,12'hFFF); //addi x1, x0, -1
+//generate_I_type(I_TYPE_OPCODE,5'd0,5'd2,ADD_FUNCT3,12'h555); //addi x2, x0, 0x555
+//generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd3, AND_FUNCT3, AND_FUNCT7); //and x3, x2, x1
+//generate_R_type(R_TYPE_OPCODE,5'd2,5'd1,5'd4, OR_FUNCT3, OR_FUNCT7); //or x4, x2, x1
+//generate_SB_type(BEQ_OPCODE,5'd4,5'd1, BEQ_FUNCT3, 13'hFFF0); //beq x4, x1, -16
+
+//generate_NULL();
 
 
 
-$display("Testcase passed: %d / %d", testcases_passed, total_testcases);
+//$display("Testcase passed: %d / %d", testcases_passed, total_testcases);
 $finish;
 end
 endmodule

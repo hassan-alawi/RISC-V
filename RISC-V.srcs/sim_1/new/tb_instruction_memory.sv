@@ -23,8 +23,8 @@
 module tb_instruction_memory();
 
 localparam CLK_PERIOD = 10;
-localparam WIDTH = 32;
-localparam DEPTH = 4096;
+localparam WIDTH = 8;
+localparam DEPTH = 16384;
 localparam FILE = "C:/users/hassa/RISC-V/RISC-V.srcs/sources_1/new/instruction.mem";
 
 

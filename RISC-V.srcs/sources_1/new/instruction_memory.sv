@@ -20,15 +20,15 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module instruction_memory #(parameter DEPTH = 4069, WIDTH = 32,FILE="")(
+module instruction_memory #(parameter DEPTH = 16384, WIDTH = 32,FILE="")(
     input logic en,
-    input logic [WIDTH-1:0] instruction_address,
-    output logic [WIDTH-1:0] instruction     
+    input logic [31:0] instruction_address,
+    output logic [31:0] instruction     
     );
     
     logic [WIDTH-1:0] ROM [DEPTH-1:0];
-    initial $readmemh(FILE, ROM, 0, DEPTH-1);
+    initial $readmemh(FILE, ROM);
     
-    assign instruction = en ? ROM[instruction_address] : '0;
+    assign instruction = en ? {ROM[instruction_address],ROM[instruction_address+'d1], ROM[instruction_address+'d2], ROM[instruction_address+'d3]} : '0;
     
 endmodule

@@ -21,9 +21,9 @@
 
 
 module core #(parameter 
-INSTR_MEM_FILE = "C:/users/hassa/RISC-V/RISC-V.srcs/sources_1/new/instruction.mem", 
-INSTR_MEM_WIDTH = 32, 
-INSTR_MEM_DEPTH = 4096,
+INSTR_MEM_FILE = "C:/users/hassa/RISC-V/instruction_8.hex", 
+INSTR_MEM_WIDTH = 8, 
+INSTR_MEM_DEPTH = 16384,
 DATA_MEM_MAP_ADR = 0,
 DATA_MEM_WIDTH = 32,
 DATA_MEM_DEPTH = 4096,
@@ -32,7 +32,7 @@ REG_FILE_DEPTH = 32)
 (
     input logic clk, nrst, load_startup_address, en,
     input logic [31:0] startup_address,
-    input logic [31:0] instruction,
+//    input logic [31:0] instruction,
     output logic [31:0] memory_mapped_reg
     );
     
@@ -45,8 +45,8 @@ REG_FILE_DEPTH = 32)
     //Immediate Generator Signals
     logic [31:0] sign_extended_immediate;
     
-//    //Instruction Memory Signals
-//    logic [31:0] instruction;
+    //Instruction Memory Signals
+    logic [31:0] instruction;
     
     //Control Signals
     logic [6:0] opcode;
@@ -99,15 +99,15 @@ REG_FILE_DEPTH = 32)
     );
     
     
-//    instruction_memory #(
-//    .DEPTH(INSTR_MEM_DEPTH), 
-//    .WIDE(INSTR_MEM_WIDTH), 
-//    .FILE(INSTR_MEM_FILE)) 
-//    ROM (
-//    .en(en),
-//    .instruction_address(instruction_address),
-//    .instruction(instruction)
-//    );
+    instruction_memory #(
+    .DEPTH(INSTR_MEM_DEPTH), 
+    .WIDTH(INSTR_MEM_WIDTH), 
+    .FILE(INSTR_MEM_FILE)) 
+    ROM (
+    .en(en),
+    .instruction_address(instruction_address),
+    .instruction(instruction)
+    );
     
     
     control ctrl(

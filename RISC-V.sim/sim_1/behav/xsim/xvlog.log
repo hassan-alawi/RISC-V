@@ -35,5 +35,3 @@ WARNING: [VRFC 10-3824] variable 'testcases_passed' must explicitly be declared 
 WARNING: [VRFC 10-3824] variable 'total_testcases' must explicitly be declared as automatic or static [C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_PC.sv:96]
 INFO: [VRFC 10-2263] Analyzing SystemVerilog file "C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv" into library xil_defaultlib
 INFO: [VRFC 10-311] analyzing module tb_core
-WARNING: [VRFC 10-8497] literal value 'hFFFFF8 truncated to fit in 21 bits [C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv:267]
-WARNING: [VRFC 10-8497] literal value 'hFFF0 truncated to fit in 13 bits [C:/Users/hassa/RISC-V/RISC-V.srcs/sim_1/new/tb_core.sv:283]
