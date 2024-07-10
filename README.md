@@ -31,6 +31,10 @@ The goal of this repository is to maintain a record of:
 	-	sub
 	-	or
 	-	and
+	-   xor
+	-   sll
+	-   srl
+	-   sra
 	
 - **I_Type**
 	-	Arithmetic and Logical Instructions

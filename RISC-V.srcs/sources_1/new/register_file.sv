@@ -21,7 +21,7 @@
 
 
 module register_file #(DEPTH = 32, WIDTH = 32)(
-    input logic clk, nrst, en, reg_write,
+    input logic clk, nrst, en, reg_write, reg_read,
     input logic [$clog2(DEPTH)-1:0] read_register_1, read_register_2, write_register,
     input logic [WIDTH-1:0] write_data,
     output logic [WIDTH-1:0] read_data_1, read_data_2
@@ -39,14 +39,14 @@ module register_file #(DEPTH = 32, WIDTH = 32)(
         end
     end    
     
-    assign read_data_1 = en ? registers[read_register_1] : '0;
-    assign read_data_2 = en ? registers[read_register_2] : '0;
+    assign read_data_1 = en & reg_read ? registers[read_register_1] : '0;
+    assign read_data_2 = en & reg_read ? registers[read_register_2] : '0;
     
     always_comb begin: NEXT_REGISTER_FILE_LOGIC
     
         n_registers = registers;
         
-        if(reg_write & en) begin
+        if(reg_write && en && ~(write_register=='0)) begin
             n_registers[write_register] = write_data;
         end
         

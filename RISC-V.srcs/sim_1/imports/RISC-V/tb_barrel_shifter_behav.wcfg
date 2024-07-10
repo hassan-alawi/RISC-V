@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="tb_barrel_shifter_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="glbl" />
+            <top_module name="tb_barrel_shifter" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="71,586.083 ns"></ZoomStartTime>
+      <ZoomEndTime time="71,722.784 ns"></ZoomEndTime>
+      <Cursor1Time time="71,700.000 ns"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="227"></NameColumnWidth>
+      <ValueColumnWidth column_width="77"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="15" />
+   <wvobject fp_name="/tb_barrel_shifter/tb_clk" type="logic">
+      <obj_property name="ElementShortName">tb_clk</obj_property>
+      <obj_property name="ObjectShortName">tb_clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/tb_operand" type="array">
+      <obj_property name="ElementShortName">tb_operand[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_operand[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/tb_num_shifts" type="array">
+      <obj_property name="ElementShortName">tb_num_shifts[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_num_shifts[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/tb_arrithmetic" type="logic">
+      <obj_property name="ElementShortName">tb_arrithmetic</obj_property>
+      <obj_property name="ObjectShortName">tb_arrithmetic</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/tb_dir" type="logic">
+      <obj_property name="ElementShortName">tb_dir</obj_property>
+      <obj_property name="ObjectShortName">tb_dir</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/tb_shift_out" type="array">
+      <obj_property name="ElementShortName">tb_shift_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_shift_out[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/testcases_passed" type="array">
+      <obj_property name="ElementShortName">testcases_passed[31:0]</obj_property>
+      <obj_property name="ObjectShortName">testcases_passed[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/total_testcases" type="array">
+      <obj_property name="ElementShortName">total_testcases[31:0]</obj_property>
+      <obj_property name="ObjectShortName">total_testcases[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/tb_expected_out" type="array">
+      <obj_property name="ElementShortName">tb_expected_out[31:0]</obj_property>
+      <obj_property name="ObjectShortName">tb_expected_out[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/CLK_PERIOD" type="array">
+      <obj_property name="ElementShortName">CLK_PERIOD[31:0]</obj_property>
+      <obj_property name="ObjectShortName">CLK_PERIOD[31:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/DUT/stage1" type="array">
+      <obj_property name="ElementShortName">stage1[31:0]</obj_property>
+      <obj_property name="ObjectShortName">stage1[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/DUT/stage2" type="array">
+      <obj_property name="ElementShortName">stage2[31:0]</obj_property>
+      <obj_property name="ObjectShortName">stage2[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/DUT/stage3" type="array">
+      <obj_property name="ElementShortName">stage3[31:0]</obj_property>
+      <obj_property name="ObjectShortName">stage3[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/DUT/stage4" type="array">
+      <obj_property name="ElementShortName">stage4[31:0]</obj_property>
+      <obj_property name="ObjectShortName">stage4[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/tb_barrel_shifter/DUT/sign" type="logic">
+      <obj_property name="ElementShortName">sign</obj_property>
+      <obj_property name="ObjectShortName">sign</obj_property>
+   </wvobject>
+</wave_config>

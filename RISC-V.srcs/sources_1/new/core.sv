@@ -50,7 +50,7 @@ REG_FILE_DEPTH = 32)
     
     //Control Signals
     logic [6:0] opcode;
-    logic branch, jump, mem_to_reg, reg_write, mem_write, mem_read, ALU_src;
+    logic branch, jump, mem_to_reg, reg_write, reg_read, mem_write, mem_read, ALU_src;
     logic [1:0] ALU_op;
     
     assign opcode = instruction[6:0];
@@ -68,7 +68,7 @@ REG_FILE_DEPTH = 32)
     //ALU Control Signals
     logic [6:0] funct7;
     logic [2:0] funct3;
-    logic [3:0] ALU_control;
+    logic [4:0] ALU_control;
     
     assign funct7 = instruction[31:25];
     assign funct3 = instruction[14:12];
@@ -117,6 +117,7 @@ REG_FILE_DEPTH = 32)
     .jump(jump),
     .mem_to_reg(mem_to_reg),
     .reg_write(reg_write),
+    .reg_read(reg_read),
     .mem_write(mem_write),
     .mem_read(mem_read),
     .ALU_src(ALU_src),
@@ -132,6 +133,7 @@ REG_FILE_DEPTH = 32)
     .nrst(nrst),
     .en(en),
     .reg_write(reg_write),
+    .reg_read(reg_read),
     .read_register_1(read_register_1),
     .read_register_2(read_register_2),
     .write_register(write_register),
@@ -151,7 +153,7 @@ REG_FILE_DEPTH = 32)
     
     ALU_control alu_ctrl(
     .en(en),
-    .funct7_5(funct7[5]),
+    .funct7(funct7),
     .ALU_op(ALU_op),
     .funct3(funct3),
     .ALU_control(ALU_control)

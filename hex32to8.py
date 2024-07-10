@@ -23,7 +23,7 @@ def convert_32bit_to_8bit(input_file, output_file, count_file, total_lines=256):
                 i += 1
 
     with open(count_file, 'w') as countfile:
-        countfile.write(f"{line_count}")
+        countfile.write(f"localparam NUM_INSTRUCTIONS = {line_count};")
 
 if __name__ == "__main__":
     if len(sys.argv) != 4:

@@ -21,7 +21,7 @@
 module control(
     input logic en,
     input logic [6:0] opcode,
-    output logic branch, jump, mem_to_reg, reg_write, mem_write, mem_read, ALU_src,
+    output logic branch, jump, mem_to_reg, reg_write, reg_read, mem_write, mem_read, ALU_src,
     output logic [1:0] ALU_op 
 );
 
@@ -29,6 +29,7 @@ always_comb begin: CONTOL_LUT
     branch = 0;
     jump = 0;
     mem_to_reg = 0;
+    reg_read = 1;
     reg_write = 0;
     mem_write = 0;
     mem_read = 0;
